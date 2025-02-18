@@ -1,0 +1,1002 @@
+:root {
+    /* Paleta principal */
+    --color-primary: #FF6B6B; /* Coral vibrante - cor principal */
+    --color-secondary: #4ECDC4; /* Turquesa - cor secundária */
+    --color-accent: #FFE66D; /* Amarelo suave - destaque */
+    --color-dark: #2C3E50; /* Azul escuro - fundos */
+    --color-light: #F7F9FC; /* Branco suave - textos */
+    
+    /* Gradientes */
+    --gradient-primary: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+    --gradient-secondary: linear-gradient(135deg, #4ECDC4, #45B7AF);
+    --gradient-dark: linear-gradient(135deg, #2C3E50, #3498DB);
+    --gradient-background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+
+    /* Tema claro (padrão) */
+    --bg-primary: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+    --text-primary: #2C3E50;
+    --card-bg: rgba(255, 255, 255, 0.1);
+    --card-border: rgba(255, 255, 255, 0.2);
+    --text-color: #2C3E50;
+    --bg-color: #F7F9FC;
+    --modal-bg: var(--gradient-dark);
+}
+
+[data-theme="dark"] {
+    /* Tema escuro */
+    --bg-primary: linear-gradient(135deg, #2C3E50, #3498DB);
+    --text-primary: #F7F9FC;
+    --card-bg: rgba(0, 0, 0, 0.2);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --color-primary: #3498DB;
+    --color-secondary: #2C3E50;
+    --color-accent: #FFE66D;
+    --gradient-primary: linear-gradient(135deg, #2C3E50, #3498DB);
+    --gradient-dark: linear-gradient(135deg, #1a2a3a, #2C3E50);
+    --text-color: #F7F9FC;
+    --bg-color: #1a2a3a;
+    --modal-bg: var(--gradient-dark);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Playfair Display', serif;
+    pointer-events: auto;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--gradient-primary);
+    font-family: 'Playfair Display', serif;
+    overflow-x: hidden;
+}
+
+nav {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 1.2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    box-shadow: 
+        0 4px 30px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.8),
+        transparent
+    );
+    transform: scaleX(0.8);
+    opacity: 0.5;
+}
+
+.nav-buttons {
+    position: relative;
+    z-index: 999;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-buttons a {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+}
+
+.nav-buttons a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.nav-buttons button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 12px 35px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    position: relative;
+    overflow: hidden;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.nav-buttons button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.nav-buttons button:active {
+    transform: translateY(0);
+}
+
+.nav-buttons button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: 0.5s;
+}
+
+.nav-buttons button:hover::after {
+    left: 100%;
+}
+
+@media (max-width: 768px) {
+    nav {
+        padding: 1rem 1.5rem;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .nav-buttons {
+        gap: 10px;
+    }
+    
+    .nav-buttons button {
+        padding: 10px 25px;
+        font-size: 0.8rem;
+    }
+}
+
+@keyframes navbarFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+nav {
+    animation: navbarFadeIn 0.5s ease forwards;
+}
+
+.login-btn,
+.register-btn {
+    z-index: 1001 !important;
+    position: relative !important;
+    pointer-events: auto !important;
+}
+
+/* Container principal */
+.hero-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 800px;
+}
+
+/* Título */
+h1 {
+    font-size: 4.5rem;
+    color: white;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    line-height: 1.2;
+}
+
+/* Subtítulo */
+.subtitle {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+}
+
+/* Botão */
+.start-button {
+    display: none !important;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3rem;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .start-button {
+        font-size: 1.1rem;
+        padding: 12px 30px;
+    }
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content > * {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.subtitle {
+    animation-delay: 0.2s;
+}
+
+.start-button {
+    animation-delay: 0.4s;
+}
+
+.hero {
+    text-align: center;
+    padding: 5rem 1rem;
+    color: var(--color-light);
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.2rem;
+    background: var(--gradient-primary);
+    color: var(--color-light);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: var(--gradient-secondary);
+}
+
+/* Estilos dos modais */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.modal-content {
+    position: relative;
+    z-index: 10001;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* Título do modal */
+.modal-content h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+    color: white;
+}
+
+/* Formulários */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Botões */
+.nav-buttons a,
+form button[type="submit"] {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+.nav-buttons a:hover,
+form button[type="submit"]:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Botão fechar */
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.close-btn:hover {
+    opacity: 1;
+}
+
+/* Perfil do usuário */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+.user-profile span {
+    color: white;
+}
+
+.btn-logout {
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(44, 62, 80, 0.9);
+    border-radius: 25px;
+    backdrop-filter: blur(5px);
+}
+
+.user-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-secondary);
+}
+
+.logout-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.cropper-view-box,
+.cropper-face {
+    border-radius: 50%;
+}
+
+form button[type="submit"] {
+    background: var(--gradient-primary);
+    color: var(--color-light);
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+form button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: var(--gradient-secondary);
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    border-radius: 10px;
+}
+
+/* Efeito Neumorphism Dinâmico */
+.card-neomorphic {
+    background: var(--gradient-background);
+    border-radius: 30px;
+    box-shadow: 
+        12px 12px 24px rgba(0, 0, 0, 0.2),
+        -12px -12px 24px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.card-neomorphic:hover {
+    transform: translateY(-5px) rotateX(10deg) rotateY(10deg);
+    box-shadow: 
+        20px 20px 30px rgba(0, 0, 0, 0.3),
+        -20px -20px 30px rgba(255, 255, 255, 0.15);
+}
+
+/* Efeito de Cursor Magnético */
+.magnetic-button {
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transform: perspective(800px);
+    transition: all 0.3s ease;
+}
+
+/* Efeito de Partículas Interativas */
+.particle-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Efeito de Texto Gradiente Animado */
+.gradient-text {
+    background: linear-gradient(
+        45deg,
+        var(--color-primary),
+        var(--color-secondary),
+        var(--color-accent)
+    );
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-shift 5s ease infinite;
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Efeito de Glassmorphism Avançado */
+.glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Efeito de Ondas Líquidas */
+.liquid-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.liquid-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(35deg);
+    transition: transform 0.5s ease;
+}
+
+.liquid-button:hover::after {
+    transform: translate(-50%, -50%) rotate(35deg) scale(1.5);
+}
+
+/* Efeito de Profundidade em Camadas */
+.depth-card {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.depth-card::before,
+.depth-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    border-radius: inherit;
+    transform: translateZ(-10px);
+    filter: blur(10px);
+    opacity: 0.5;
+}
+
+/* Efeito de Texto 3D */
+.text-3d {
+    text-shadow: 
+        1px 1px 0 var(--color-secondary),
+        2px 2px 0 var(--color-secondary),
+        3px 3px 0 var(--color-secondary),
+        4px 4px 0 var(--color-secondary);
+    transform: perspective(500px) rotateX(10deg);
+    transition: transform 0.3s ease;
+}
+
+/* Efeito de Borda Gradiente Animada */
+.gradient-border {
+    position: relative;
+    border: 2px solid transparent;
+    background: linear-gradient(var(--gradient-dark)) padding-box,
+                linear-gradient(45deg, var(--color-primary), var(--color-secondary)) border-box;
+    animation: border-rotate 4s linear infinite;
+}
+
+@keyframes border-rotate {
+    100% { transform: rotate(360deg); }
+}
+
+/* Cursor Personalizado */
+.custom-cursor {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--color-secondary);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: all 0.1s ease;
+    transform-origin: center;
+}
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: all 0.15s ease;
+}
+
+.cursor-hover {
+    transform: scale(1.5);
+    background: rgba(78, 205, 196, 0.1);
+    mix-blend-mode: difference;
+}
+
+.dot-hover {
+    transform: scale(0);
+}
+
+/* Efeitos de áudio feedback visual */
+.audio-feedback {
+    position: relative;
+    overflow: hidden;
+}
+
+.audio-feedback::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.audio-feedback:active::after {
+    opacity: 1;
+}
+
+/* Estilo do toggle de tema */
+.theme-toggle-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9998;
+    pointer-events: auto;
+}
+
+.theme-toggle-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.theme-toggle-button:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.theme-toggle-button:active {
+    transform: translateY(0);
+}
+
+/* Animação do ícone */
+.theme-toggle-button i {
+    transition: transform 0.5s ease;
+}
+
+.theme-toggle-button.dark-mode i {
+    transform: rotate(360deg);
+}
+
+/* Tema escuro */
+[data-theme="dark"] .theme-toggle-button i {
+    transform: rotate(360deg);
+}
+
+/* Player de música e visualizador */
+.music-player {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.music-toggle {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 5px;
+    transition: 0.3s ease;
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+}
+
+.music-toggle.playing {
+    color: var(--color-accent);
+}
+
+.music-visualizer {
+    width: 100px;
+    height: 30px;
+    margin-left: 10px;
+    position: relative;
+}
+
+#visualizer {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+/* Animação para o ícone de música */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.music-toggle.playing i {
+    animation: pulse 1s infinite;
+}
+
+/* Estilo para os botões na parte inferior */
+.bottom-buttons {
+    display: none;
+}
+
+/* Remover qualquer overlay que possa estar interferindo */
+.overlay,
+.background-overlay {
+    display: none !important;
+}
+
+/* Garantir que os formulários sejam interativos */
+form input,
+form button {
+    pointer-events: auto !important;
+}
+
+/* Garantir que os botões sejam clicáveis */
+.nav-buttons button,
+.start-button,
+.close-btn {
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+/* Garantir que os botões sejam clicáveis */
+button, 
+.nav-buttons button,
+.start-button,
+.close-btn,
+.theme-toggle {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    z-index: 10003 !important;
+}
+
+/* Tema escuro */
+.dark-mode {
+    background: #1a1a1a;
+    color: white;
+}
+
+.theme-toggle {
+    position: relative;
+    z-index: 10004;
+}
+
+/* Estilos do perfil do usuário */
+.user-profile {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .user-profile {
+        padding: 6px 12px;
+    }
+    
+    .user-name {
+        font-size: 0.9rem;
+    }
+    
+    .logout-btn {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Modal de perfil */
+.profile-content {
+    max-width: 500px;
+}
+
+.profile-image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.profile-image {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.profile-image:hover .image-overlay {
+    opacity: 1;
+}
+
+.change-photo-btn {
+    color: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+/* Formulário de perfil */
+#profileForm .form-group {
+    margin-bottom: 20px;
+}
+
+#profileForm label {
+    display: block;
+    color: white;
+    margin-bottom: 5px;
+}
+
+/* Campos de formulário */
+.form-group {
+    position: relative;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.form-group input {
+    width: 100%;
+    pointer-events: auto !important;
+}
+
+/* Garantir que todos os botões sejam clicáveis */
+button {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 1000;
+}
+
+/* Remover qualquer sobreposição que possa interferir */
+* {
+    pointer-events: auto;
+}
+
+/* Quando o modal estiver aberto */
+.modal-open {
+    overflow: hidden;
+}
+
+.modal-open .start-button {
+    display: none; /* Esconde o botão quando o modal estiver aberto */
+}
+
+/* Garantir que o conteúdo principal fique abaixo da navbar */
+main {
+    position: relative;
+    z-index: 1;
+}
+}

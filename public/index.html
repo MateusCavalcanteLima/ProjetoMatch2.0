@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoveFinder</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="logo">MatchFriends</div>
+        <div class="nav-buttons">
+            <a href="#" class="btn-login">Entrar</a>
+            <a href="#" class="btn-register">Cadastrar</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Encontre novos amigos</h1>
+                <p class="subtitle">Descubra conexões especiais em nossa comunidade</p>
+                <a href="#" class="start-button">Começar Agora</a>
+            </div>
+        </div>
+
+        <!-- Modal de Login -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Senha" required>
+                    <button type="submit">Entrar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal de Registro -->
+        <div id="registerModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>Cadastro</h2>
+                <form id="registerForm">
+                    <input type="text" name="name" placeholder="Nome" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Senha" required>
+                    <button type="submit">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Adicione este modal para edição de foto -->
+        <div id="cropperModal" class="modal">
+            <div class="modal-content cropper-content">
+                <span class="close-button" onclick="closeCropperModal()">&times;</span>
+                <div class="cropper-container">
+                    <img id="cropperImage" src="" alt="Imagem para cortar">
+                </div>
+                <div class="cropper-controls">
+                    <button onclick="rotateImage(-90)">↺ Girar Esquerda</button>
+                    <button onclick="rotateImage(90)">↻ Girar Direita</button>
+                    <button onclick="zoomIn()">+ Zoom</button>
+                    <button onclick="zoomOut()">- Zoom</button>
+                    <button class="save-crop" onclick="saveCroppedImage()">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <audio id="bgMusic" loop>
+        <source src="/music/ambient.mp3" type="audio/mp3">
+    </audio>
+
+    <script src="script.js"></script>
+
+    <!-- Adicione o botão de tema no final do body -->
+    <div class="theme-toggle-container">
+        <button class="theme-toggle-button" id="theme-toggle">
+            <i class="fas fa-sun"></i>
+        </button>
+    </div>
+</body>
+</html>

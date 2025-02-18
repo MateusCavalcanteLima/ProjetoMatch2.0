@@ -1,0 +1,16 @@
+{
+  "name": "lovefinder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.13.8",
+    "multer": "^1.4.5-lts.1"
+  }
+}
